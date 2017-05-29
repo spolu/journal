@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Secure your Bitcoins with Gmail and Keybase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body>
+    <a href="../index.html">&larr;Home</a>
+    <section id="wrapper">
+      <h1>Secure your Bitcoins with Gmail and Keybase</h1>
+      <h2>Motivation</h2>
+
+      <p>
+      I've invested a few BTC and ETH funds over the past few months in a very
+      speculative way (whether it's a smart thing to do or not is probably the
+      subject of another post) and a very simple need arose: secure these
+      coins out of the marketplaces where I acquired them. I'm already taking
+      quite a lot of risk exposing myself to BTC or ETH so I definitly don't
+      want to expose myself to the risk of default of the marketplaces I use on
+      top of that.
+      </p>
+
+      <p>
+      A quick search online yielded the following solutions:
+      </p>
+
+      <ul>
+        <li>Setup a paper waller[0].</li>
+        <li>Setup a cold-storage wallet on a USB key or SDD drive[1].</li>
+        <li>Buy a hardware wallet[2].</li>
+      </ul>
+
+      <p>
+      Not being a Bitcoin power-user but more of an occasional coin investor
+      (mostly motivated by curiosity and fun-seeking), I really don't want to
+      setup a paper wallet or a cold USB wallet (I know I'd just eventually
+      loose them) and I'm not keen on spending money on a hardware wallet. 
+      </p>
+
+      <p>
+      <i>
+        I really just want to generate a wallet and store it securely on my
+        GMail account so that I'm sure that I'll be able to retrieve it
+        eventually, at some point.
+      </i>
+      </p>
+
+      <p>
+      So I opted for the following solution relying on GMail[3] and Keybase[4]
+      that I find strike the right trade-off between ease of use, durability
+      and security, at least for me. I'll describe that solution for Bitcoin
+      but it is easily adaptable to other currencies.
+      </p>
+
+      <p>
+      You'll need the following:
+      </p>
+
+      <ul>
+        <li>
+          A Gmail account[3] or any other long-term email solution that
+          works for you.
+        </li>
+        <li>
+          A Keybase account[4] or any long-term PGP solution that works for
+          you.
+        </li>
+        <li>
+          NodeJS[5] installed on your machine
+        </li>
+      </ul>
+
+      <h2>Setting up the wallet</h2>
+
+      <p>
+      Create new directory that we'll use to install a few npm (node) packages.
+      Once finished you can delete that directory.
+      </p>
+
+      <pre><code class="bash hljs">
+$ mkdir bitcoin_wallet
+$ cd bitcoin_wallet
+      </code></pre>
+
+      <p>
+      Install the library we'll need to work with Bitcoin addresses.
+      </p>
+
+      <pre><code class="bash hljs">
+$ npm install --save bitcoinjs-lib
+      </code></pre>
+
+      <p>
+      From there you can start the NodeJS REPL (ctrl-D to exit).
+      </p>
+
+      <pre><code class="bash hljs">
+$ node
+>
+      </code></pre>
+
+      <p class="footnotes">
+      [0] https://en.bitcoin.it/wiki/How_to_set_up_a_secure_offline_savings_wallet<br/>
+      [1] https://en.bitcoin.it/wiki/Paper_wallet<br/>
+      [2] https://en.bitcoin.it/wiki/Hardware_wallet<br/>
+      [3] https://gmail.com<br/>
+      [4] https://keybase.io<br/>
+      [5] https://nodejs.org<br/>
+      </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

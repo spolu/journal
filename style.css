@@ -112,30 +112,6 @@ hr {
   background: #eee;
 }
 
-code {
-  font-family: 'Source Code Pro', Menlo, monospace;
-  background-color:#EEE;
-  padding: 2px;
-  font-weight: 400;
-  border-radius: 3px;
-}
-
-code span {
-}
-
-pre	{
-  white-space:pre-wrap;
-  padding:10px;
-  overflow:auto;
-  border-radius: 3px;
-  background: #272b2d;
-  font-family: 'Source Code Pro', Menlo, monospace;
-  line-height: 1.5em;
-  font-weight: 400;
-  color: #d0d4d7;
-  font-size: 11px;
-}
-
 table {
   width: 100%;
   margin: 40px 0;
@@ -188,4 +164,15 @@ img {
   max-width: 600px;
   margin: 0 auto;
   padding: 60px 40px 100px 40px;
+}
+
+/* Highlight */
+code.hljs {
+  padding-top: 0em;
+  padding-bottom: 0em;
+}
+
+pre {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
