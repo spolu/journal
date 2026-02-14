@@ -2,28 +2,29 @@
 <html lang="en-US">
   <head>
     <title>Secure your Bitcoins with Gmail and Keybase</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
   </head>
   <body>
-    <a href="../index.html">&larr;Home</a>
+    <a href="../index.html" class="home">&larr; HOME</a>
     <section id="wrapper">
       <h1>Secure your Bitcoins with Gmail and Keybase</h1>
       <h2>Motivation</h2>
 
       <p>
-      I've invested a few BTC and ETH funds over the past few months in a very
-      speculative way (whether it's a smart thing to do or not is probably the
-      subject of another post) and a very simple need arose: secure these
-      coins out of the marketplaces where I acquired them. I'm already taking
-      quite a lot of risk exposing myself to BTC or ETH so I definitly don't
-      want to expose myself to the risk of default of the marketplaces I use on
-      top of that.
+        I've invested a few BTC and ETH funds over the past few months in a very
+        speculative way (whether it's a smart thing to do or not is probably the
+        subject of another post) and a very simple need arose: secure these
+        :oins out of the marketplaces where I acquired them. I'm already taking
+        quite a lot of risk exposing myself to BTC or ETH so I definitly don't
+        want to expose myself to the risk of default of the marketplaces I use
+        on top of that.
       </p>
 
-      <p>
-      A quick search online yielded the following solutions:
-      </p>
+      <p>A quick search online yielded the following solutions:</p>
 
       <ul>
         <li>Setup a paper waller[0].</li>
@@ -32,50 +33,45 @@
       </ul>
 
       <p>
-      Not being a Bitcoin power-user but more of an occasional coin investor
-      (mostly motivated by curiosity and fun-seeking), I really don't want to
-      setup a paper wallet or a cold USB wallet (I know I'd just eventually
-      loose them) and I'm not keen on spending money on a hardware wallet. 
+        Not being a Bitcoin power-user but more of an occasional coin investor
+        (mostly motivated by curiosity and fun-seeking), I really don't want to
+        setup a paper wallet or a cold USB wallet (I know I'd just eventually
+        loose them) and I'm not keen on spending money on a hardware wallet.
       </p>
 
       <p>
-      <i>
-        I really just want to generate a wallet and store it securely on my
-        GMail account so that I'm sure that I'll be able to retrieve it
-        eventually, at some point.
-      </i>
+        <i>
+          I really just want to generate a wallet and store it securely on my
+          GMail account so that I'm sure that I'll be able to retrieve it
+          eventually, at some point.
+        </i>
       </p>
 
       <p>
-      So I opted for the following solution relying on GMail[3] and Keybase[4]
-      that I find strike the right balance between ease of use, durability
-      and security, at least for me. I'll describe that solution for Bitcoin
-      but it is easily adaptable to other currencies.
+        So I opted for the following solution relying on GMail[3] and Keybase[4]
+        that I find strike the right balance between ease of use, durability and
+        security, at least for me. I'll describe that solution for Bitcoin but
+        it is easily adaptable to other currencies.
       </p>
 
-      <p>
-      You'll need the following:
-      </p>
+      <p>You'll need the following:</p>
 
       <ul>
         <li>
-          A Gmail account[3] or any other long-term email solution that
-          works for you.
+          A Gmail account[3] or any other long-term email solution that works
+          for you.
         </li>
         <li>
-          A Keybase account[4] or any long-term PGP solution that works for
-          you.
+          A Keybase account[4] or any long-term PGP solution that works for you.
         </li>
-        <li>
-          NodeJS[5] installed on your machine
-        </li>
+        <li>NodeJS[5] installed on your machine</li>
       </ul>
 
       <h2>Setting up the wallet</h2>
 
       <p>
-      Create new directory that we'll use to install a few npm (node) packages.
-      Once finished you can delete that directory.
+        Create new directory that we'll use to install a few npm (node)
+        packages. Once finished you can delete that directory.
       </p>
 
       <pre><code class="bash hljs">
@@ -83,17 +79,13 @@ $ mkdir bitcoin_wallet
 $ cd bitcoin_wallet
       </code></pre>
 
-      <p>
-      Install the library we'll need to work with Bitcoin addresses.
-      </p>
+      <p>Install the library we'll need to work with Bitcoin addresses.</p>
 
       <pre><code class="bash hljs">
 $ npm install --save bitcoinjs-lib
       </code></pre>
 
-      <p>
-      From there you can start the NodeJS REPL (ctrl-D to exit).
-      </p>
+      <p>From there you can start the NodeJS REPL (ctrl-D to exit).</p>
 
       <pre><code class="bash hljs">
 $ node
@@ -101,11 +93,13 @@ $ node
       </code></pre>
 
       <p>
-      We'll use BitcoinJS to generate a Bitcoin address locally. Please note
-      that if your computer is compromised, this address might be intercepted
-      by an attacker (I'll try to point out all the security assumptions I'm
-      making along the way).
-      <p>
+        We'll use BitcoinJS to generate a Bitcoin address locally. Please note
+        that if your computer is compromised, this address might be intercepted
+        by an attacker (I'll try to point out all the security assumptions I'm
+        making along the way).
+      </p>
+
+      <p></p>
 
       <pre><code class="bash hljs">
 > var bitcoin = require('bitcoinjs-lib')
@@ -122,11 +116,12 @@ undefined
       <h2>Securing your private key</h2>
 
       <p>
-      The string returned from the `toWIF()` call is your private key. The
-      string returned by `getAddress()` is your Bitcoin address.  Copy-paste
-      both of them in <a href="https://keybase.io/encrypt">keybase.io/encrypt</a>
-      and add yourself as recipient. After clicking `Encrypt` you should get a
-      PGP encrypted representation of your key:
+        The string returned from the `toWIF()` call is your private key. The
+        string returned by `getAddress()` is your Bitcoin address. Copy-paste
+        both of them in
+        <a href="https://keybase.io/encrypt">keybase.io/encrypt</a>
+        and add yourself as recipient. After clicking `Encrypt` you should get a
+        PGP encrypted representation of your key:
       </p>
 
       <pre><code class="hljs">
@@ -148,68 +143,78 @@ ig==
       </code></pre>
 
       <p>
-      At this point you trust PGP with your key and the fact that your computer
-      is not compromised (since the PGP encryption happened client-side with
-      Keybase). You also trust Keybase to do what they say they're doing. I
-      personally feel good with these assumptions given the amount of Bitcoin
-      I'm trying to secure, but you might totally feel differently about it.
+        At this point you trust PGP with your key and the fact that your
+        computer is not compromised (since the PGP encryption happened
+        client-side with Keybase). You also trust Keybase to do what they say
+        they're doing. I personally feel good with these assumptions given the
+        amount of Bitcoin I'm trying to secure, but you might totally feel
+        differently about it.
       </p>
 
       <p>
-      You can store that encrypted key on your computer or, to make sure that
-      you won't loose it, send it to yourself on Gmail or any other cloud email
-      or storage service that you trust you will be using for a long time.
+        You can store that encrypted key on your computer or, to make sure that
+        you won't loose it, send it to yourself on Gmail or any other cloud
+        email or storage service that you trust you will be using for a long
+        time.
       </p>
 
       <p>
-      <i>Out of convenience, make sure to store your Bitcoin address in clear
-        along with the PGP encrypted message.</i>
+        <i
+          >Out of convenience, make sure to store your Bitcoin address in clear
+          along with the PGP encrypted message.</i
+        >
       </p>
 
       <p>
-      Gmail or anyone getting access to the PGP encrypted version of it won't
-      be able to retrieve your private key.
+        Gmail or anyone getting access to the PGP encrypted version of it won't
+        be able to retrieve your private key.
       </p>
 
       <h2>Testing your setup</h2>
 
       <p>
-      To test your setup, send a small amount of Bitcoin to your address (the
-      value returned from `getAddress()` above) using your favorite wallet or
-      by withdrawing a small amount from the marketplace you use.
+        To test your setup, send a small amount of Bitcoin to your address (the
+        value returned from `getAddress()` above) using your favorite wallet or
+        by withdrawing a small amount from the marketplace you use.
       </p>
 
       <p>
-      Even if transactions take a bit of time to confirm these days, it should
-      instantaneously be visible as unconfirmed on blockchain.info (using the
-      address we generated in this tutorial here):
+        Even if transactions take a bit of time to confirm these days, it should
+        instantaneously be visible as unconfirmed on blockchain.info (using the
+        address we generated in this tutorial here):
       </p>
 
       <p>
-      <a href="https://blockchain.info/address/1Jo7DC8bUcZcD2goCVBvBvZ4od2D1KRw8">
-        https://blockchain.info/address/1Jo7DC8bUcZcD2goCVBvBvZ4od2D1KRw8
-      </a>
+        <a
+          href="https://blockchain.info/address/1Jo7DC8bUcZcD2goCVBvBvZ4od2D1KRw8"
+        >
+          https://blockchain.info/address/1Jo7DC8bUcZcD2goCVBvBvZ4od2D1KRw8
+        </a>
       </p>
 
       <p>
-      Wait for a few hours for the transaction to confirm before proceeding to
-      sending the money back to the marketplace you're using (they should allow
-      deposit directly to a Bitcoin address) or your favorite wallet. Note the
-      ID of the transaction (this is the longest string).
-      <p>
+        Wait for a few hours for the transaction to confirm before proceeding to
+        sending the money back to the marketplace you're using (they should
+        allow deposit directly to a Bitcoin address) or your favorite wallet.
+        Note the ID of the transaction (this is the longest string).
+      </p>
+
+      <p></p>
 
       <p>
-      <i>Make sure to send a small amount in case you are unable to use the
-        Bitcoin address and private key you generated.</i>
+        <i
+          >Make sure to send a small amount in case you are unable to use the
+          Bitcoin address and private key you generated.</i
+        >
       </p>
 
       <p>
-      Now let's attempt to generate a reverse transaction to a Bitcoin address of your
-      choice. Retrieve your encrypted blob and copy paste it at
-      <a href="https://keybase.io/decrypt">keybase.io/decryot</a>. Once
-      successfully decrypted, use your private key, along with the ID of your
-      test transaction with the following code to generate a transaction from
-      the NodeJS REPL:
+        Now let's attempt to generate a reverse transaction to a Bitcoin address
+        of your choice. Retrieve your encrypted blob and copy paste it at
+        <a href="https://keybase.io/decrypt">keybase.io/decryot</a>. Once
+        successfully decrypted, use your private key, along with the ID of your
+        test transaction with the following code to generate a transaction from
+        the NodeJS REPL:
       </p>
 
       <pre><code class="bash hljs">
@@ -237,47 +242,51 @@ undefined
       </code></pre>
 
       <p>
-      The last value is the hex encoding of your test transaction to
-      `destAddress`. You can then submit that transaction at
-      <a href="https://blockchain.info/pushtx">https://blockchain.info/pushtx</a>.
-      If you receive a `Transation Submitted` that means that you successfully
-      manage to send bitcoins out of your wallet. You can then track the
-      confirmation of the transaction on blockchain.info.
+        The last value is the hex encoding of your test transaction to
+        `destAddress`. You can then submit that transaction at
+        <a href="https://blockchain.info/pushtx"
+          >https://blockchain.info/pushtx</a
+        >. If you receive a `Transation Submitted` that means that you
+        successfully manage to send bitcoins out of your wallet. You can then
+        track the confirmation of the transaction on blockchain.info.
       </p>
 
       <h2>Conclusion</h2>
 
       <p>
-      <i>Congrats! You now control a Bitcoin address you can safely send your funds to and
-        use as a vault.</i>
+        <i
+          >Congrats! You now control a Bitcoin address you can safely send your
+          funds to and use as a vault.</i
+        >
       </p>
 
       <p>
-      Obviously, you can easily extend this pattern to other cryptocurrencies
-      assuming you have a way to generate new addresses, create and submit
-      transactions.
+        Obviously, you can easily extend this pattern to other cryptocurrencies
+        assuming you have a way to generate new addresses, create and submit
+        transactions.
       </p>
 
       <p>
-      I hope this post is useful to you, don't hesitate to contact me at
-      polu.stanislas@gmail.com with any remarks or feedback!
+        I hope this post is useful to you, don't hesitate to contact me at
+        polu.stanislas@gmail.com with any remarks or feedback!
       </p>
 
-      <p>
-      -stan
-      </p>
+      <p>-stan</p>
 
       <p class="footnotes">
-      [0] https://en.bitcoin.it/wiki/How_to_set_up_a_secure_offline_savings_wallet<br/>
-      [1] https://en.bitcoin.it/wiki/Paper_wallet<br/>
-      [2] https://en.bitcoin.it/wiki/Hardware_wallet<br/>
-      [3] https://gmail.com<br/>
-      [4] https://keybase.io<br/>
-      [5] https://nodejs.org<br/>
+        [0]
+        https://en.bitcoin.it/wiki/How_to_set_up_a_secure_offline_savings_wallet<br />
+        [1] https://en.bitcoin.it/wiki/Paper_wallet<br />
+        [2] https://en.bitcoin.it/wiki/Hardware_wallet<br />
+        [3] https://gmail.com<br />
+        [4] https://keybase.io<br />
+        [5] https://nodejs.org<br />
       </p>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>

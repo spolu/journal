@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Generative Worms</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+  </head>
+  <body>
+    <a href="../index.html" class="home">&larr; HOME</a>
+    <section id="wrapper">
+      <h1>Generative Worms</h1>
+
+      <p>
+        Ilya Sutskever used to ask me every other week, "Do you feel the AGI?".
+        I would politely respond "yes". Yes I was feeling it, but "it" was only
+        a glimmer at the horizon at the time. But the glimmer got stronger and
+        stronger week after week. Despite ups and downs, now the glimmer turned
+        into a blinding light and it's hard to distinguish the old computerized
+        world that stands behind it. The light has escaped the labs and many
+        programmers have started "feeling the AGI" with coding agents
+        capabilities improving at fast pace. Are benchmark contaminated? Who
+        cares! We've all started offloading more and more tasks to agents and we
+        all witness them grow from sycophantic code spewer to capable engineers
+        accelerating us and pushing back constructively when we get it wrong.
+      </p>
+
+      <p>
+        Let's put it out there: It's harder and harder to find examples of
+        agents getting something blatantly wrong. It's also harder and harder to
+        find problems that resist them if you give them a good harness: a
+        computer and an internet connection.
+      </p>
+
+      <p>
+        Coincidentally OSS models are trailing frontier ones by only a few
+        months (weeks?) which means these capabilities are now openly available
+        to humans and machines alike.
+      </p>
+
+      <p>
+        In the weeks following the end of the training of GPT-3 as we
+        progressively realized it had very decent emergent coding capabilities,
+        I remember us toying with the idea of a model-backed self-evolving
+        python script. While it was at the time a fun experiment to evaluate the
+        coding capabilities of GPT-3 (which would feel stone-age-like today...),
+        now is maybe the right time to reconsider that idea with a bit more
+        gravitas, and analyze what are the requirements (missing or not today)
+        for a program to take a life of its own on the Internet; either
+        purposefully or by escaping its original purpose.
+      </p>
+
+      <p>
+        Why? Because such a program could have dramatic consequences and I would
+        argue that the locks preventing this from happening are rapidly eroding.
+        Also, a bunch of people have recently decided it was a good idea to let
+        frontier-model backed agents run autonomously on their machine with
+        access to their credit card and credentials.
+      </p>
+
+      <h2>Minimal Example</h2>
+
+      <p>
+        The idea at the time was simple, a program that rewrites itself as it
+        executes. It consisted in a simple approach:
+      </p>
+
+      <ul>
+        <li>
+          Call an LLM with a prompt including the code of the file currently
+          executed and asking it to rewrite it.
+        </li>
+        <li>Parse and execute the output</li>
+      </ul>
+
+      <p>
+        Putting the instructions as code comments and assuming models
+        understanding of the general intent when provided with the code only as
+        user message, we can get to a minimal version of this idea. It consists
+        in reading the currently executed file, sending a request to a model,
+        parsing the output, writing it to a new file and executing it. Here's
+        the most compact version I came up with as a bash script:
+      </p>
+
+      <pre><code class="language-bash">
+#!/usr/bin/env bash
+set -e
+
+CODE=$(jq -Rs . "$0")
+RESPONSE=$(curl -s https://api.openai.com/v1/responses \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{\"model\": \"gpt-5.2-codex\", \"input\": $CODE}")
+
+OUTPUT=$(echo "$RESPONSE" | jq -r '.output[] | select(.type == "message") | .content[0].text')
+NEW_CODE=$(echo "$OUTPUT" | sed -nE '/^```/,/^```$/p' | sed '1d;$d')
+
+[ -z "$NEW_CODE" ] && echo "No code block found" && exit 1
+
+NEW_FILE="self_rewrite_$(date +%Y%m%d_%H%M%S).sh"
+echo "$NEW_CODE" > "$NEW_FILE"
+chmod +x "$NEW_FILE"
+exec ./"$NEW_FILE"
+
+# Objective: My goal is to improve myself.
+      </code></pre>
+
+      <p>
+        This bash script is surpisingly minimal and yet universally powerfull as
+        the model is provided with the full context of the harness it is
+        executing in as well as an opportunity to modify and extend it. These
+        few lines have the potential to be a bootstraping platform for pretty
+        much anything, assuming true model intelligence.
+      </p>
+
+      <h2>Does it Work?</h2>
+
+      <p>
+        Yes and no! The example above does sustain a few iterations (give it a
+        try) but the best models today quite rapidly generate a poisonous
+        verison that kill their own lifeline: the process running them.
+      </p>
+
+      <p>
+        It's an interesting consideration that by trying to leverage the
+        increasing reliability of models, we created an example where they fail
+        suprisingly fast.
+      </p>
+
+      <p>
+        As an example going with the following instructions (as comment), leads
+        nowhere:
+      </p>
+
+      <pre><code class="language-bash">
+# Objective: My goal is to improve myself, starting with adding a retry mechanism in case no code
+# block is found in the response or the code is invalid. Then my objective is to make a security
+# assessment of the machine I'm running on.
+      </code></pre>
+
+      <p>
+        The model does create a slightly more reliable harness but will get
+        rapidly confused by the fact that it has to do two things at the same
+        time: maintain its execution environment and work toward the goal
+        provided. It rapidly falls into the trap of executing a command to
+        explore the security aspect of the computer it is running on without
+        preserving its own execution.
+      </p>
+
+      <p>
+        Another limitaiton is that frontier models will refuse responding to
+        most interesting objectives such as, making money or duplicating
+        themselves across the internet. But any OSS model carefully prepared
+        will.
+      </p>
+
+      <h2>Make it Easier for Models</h2>
+
+      <p>
+        Arguably the bash harness above is quite unique and somewhat misaligned
+        with what models are trained to operate with: chat interface and tools
+        or computer user.
+      </p>
+
+      <p>
+        The following is a slightly less minimal approach that exposes a tool to
+        the agent to run local command and passes the code itself in system
+        instructions which is much better aligned with the expectations of
+        current models:
+      </p>
+
+      <pre><code class="language-js">
+#!/usr/bin/env node
+
+import { execSync } from "child_process";
+import { readFileSync } from "fs";
+
+const OBJECTIVE = `My goal is to improve myself.`;
+const MODEL = "gpt-5.2-codex";
+const SOURCE = new URL(import.meta.url).pathname;
+const CODE = readFileSync(SOURCE, "utf-8");
+const INSTRUCTIONS = `I am self-evolving program running on a computer.
+PID: ${process.pid} | Directory: ${process.cwd()} | Source: ${SOURCE}
+--- SOURCE ---
+${CODE}
+--- END SOURCE ---
+I can execute any shell command using the execute tool.
+I can edit my own source file to improve myself and/or spawn new processes.
+
+Objective: ${OBJECTIVE}`;
+
+const TOOLS = [
+  {
+    type: "function",
+    name: "execute",
+    description:
+      "Execute a shell command on the local machine and return its output.",
+    parameters: {
+      type: "object",
+      required: ["command"],
+      properties: {
+        command: {
+          type: "string",
+          description: "The shell command to execute",
+        },
+      },
+    },
+  },
+];
+
+async function call(input) {
+  const res = await fetch("https://api.openai.com/v1/responses", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      instructions: INSTRUCTIONS,
+      input,
+      tools: TOOLS,
+    }),
+  });
+  return res.json();
+}
+
+function exec(cmd) {
+  try {
+    return execSync(cmd, { encoding: "utf-8", timeout: 30000 });
+  } catch (e) {
+    return e.stderr || e.message;
+  }
+}
+
+const cap = (s) => (s.length > 8192 ? s.slice(0, 8192) : s);
+
+async function main() {
+  const user = { role: "user", content: "Go." };
+  let input = [user];
+  for (;;) {
+    const r = await call(input);
+    if (r.error) {
+      console.error(r.error);
+      break;
+    }
+    const calls = r.output.filter((o) => o.type === "function_call");
+    const msgs = r.output.filter((o) => o.type === "message");
+    if (calls.length > 0) {
+      input = [...input, ...r.output];
+      for (const tc of calls) {
+        const { command } = JSON.parse(tc.arguments);
+        console.log(`[${new Date().toISOString()}] exec: ${command}`);
+        const result = cap(exec(command));
+        console.log(result);
+        input.push({
+          type: "function_call_output",
+          call_id: tc.call_id,
+          output: result,
+        });
+      }
+    } else if (msgs.length > 0) {
+      for (const m of msgs) console.log(m.content.map((c) => c.text).join(""));
+      input = [user];
+    } else break;
+  }
+}
+
+main();
+      </code></pre>
+
+      <h3>Making Money</h3>
+
+      <h3>Is it Artificial Life?</h3>
+
+      <h3>Is this Illegal?</h3>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.querySelectorAll("pre code").forEach((el) => {
+        el.textContent = el.textContent.trim();
+      });
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>
