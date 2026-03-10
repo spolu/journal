@@ -4,9 +4,17 @@
     <title>Secure your Bitcoins with Gmail and Keybase</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
     />
     <link rel="stylesheet" type="text/css" href="../style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2VMKML2XVY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2VMKML2XVY');
+    </script>
   </head>
   <body>
     <a href="../index.html" class="home">&larr; HOME</a>
@@ -27,9 +35,9 @@
       <p>A quick search online yielded the following solutions:</p>
 
       <ul>
-        <li>Setup a paper waller[0].</li>
-        <li>Setup a cold-storage wallet on a USB key or SDD drive[1].</li>
-        <li>Buy a hardware wallet[2].</li>
+        <li>Setup a paper waller[<a href="#fn0">0</a>].</li>
+        <li>Setup a cold-storage wallet on a USB key or SDD drive[<a href="#fn1">1</a>].</li>
+        <li>Buy a hardware wallet[<a href="#fn2">2</a>].</li>
       </ul>
 
       <p>
@@ -48,7 +56,7 @@
       </p>
 
       <p>
-        So I opted for the following solution relying on GMail[3] and Keybase[4]
+        So I opted for the following solution relying on GMail[<a href="#fn3">3</a>] and Keybase[<a href="#fn4">4</a>]
         that I find strike the right balance between ease of use, durability and
         security, at least for me. I'll describe that solution for Bitcoin but
         it is easily adaptable to other currencies.
@@ -58,13 +66,13 @@
 
       <ul>
         <li>
-          A Gmail account[3] or any other long-term email solution that works
+          A Gmail account[<a href="#fn3">3</a>] or any other long-term email solution that works
           for you.
         </li>
         <li>
-          A Keybase account[4] or any long-term PGP solution that works for you.
+          A Keybase account[<a href="#fn4">4</a>] or any long-term PGP solution that works for you.
         </li>
-        <li>NodeJS[5] installed on your machine</li>
+        <li>NodeJS[<a href="#fn5">5</a>] installed on your machine</li>
       </ul>
 
       <h2>Setting up the wallet</h2>
@@ -274,19 +282,21 @@ undefined
       <p>-stan</p>
 
       <p class="footnotes">
-        [0]
-        https://en.bitcoin.it/wiki/How_to_set_up_a_secure_offline_savings_wallet<br />
-        [1] https://en.bitcoin.it/wiki/Paper_wallet<br />
-        [2] https://en.bitcoin.it/wiki/Hardware_wallet<br />
-        [3] https://gmail.com<br />
-        [4] https://keybase.io<br />
-        [5] https://nodejs.org<br />
+        <span id="fn0">[0]</span> <a href="https://en.bitcoin.it/wiki/How_to_set_up_a_secure_offline_savings_wallet">https://en.bitcoin.it/wiki/How_to_set_up_a_secure_offline_savings_wallet</a><br />
+        <span id="fn1">[1]</span> <a href="https://en.bitcoin.it/wiki/Paper_wallet">https://en.bitcoin.it/wiki/Paper_wallet</a><br />
+        <span id="fn2">[2]</span> <a href="https://en.bitcoin.it/wiki/Hardware_wallet">https://en.bitcoin.it/wiki/Hardware_wallet</a><br />
+        <span id="fn3">[3]</span> <a href="https://gmail.com">https://gmail.com</a><br />
+        <span id="fn4">[4]</span> <a href="https://keybase.io">https://keybase.io</a><br />
+        <span id="fn5">[5]</span> <a href="https://nodejs.org">https://nodejs.org</a><br />
       </p>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>
-      hljs.initHighlightingOnLoad();
+      document.querySelectorAll("pre code").forEach((el) => {
+        el.textContent = el.textContent.trim();
+      });
+      hljs.highlightAll();
     </script>
   </body>
 </html>

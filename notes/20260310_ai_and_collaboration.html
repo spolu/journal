@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>AI & Collaboration</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2VMKML2XVY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2VMKML2XVY');
+    </script>
+  </head>
+  <body>
+    <a href="../index.html" class="home">&larr; HOME</a>
+    <section id="wrapper">
+      <p class="date">March 10, 2026</p>
+      <h1>AI and Collaboration</h1>
+
+      <p>
+        Most AI use out there is single agent, single player. I think this is
+        shortsighted. Our hypothesis: collaboration is on the critical path of
+        accelerating companies with AI.
+      </p>
+
+      <p>
+        Here's why. Even if you're a single agent maximalist, as the time
+        horizon of agents tasks increase, you will necessarily fall back to a
+        collaborative pattern. The agent needs steering from multiple users, or
+        needs to interact with people or other agents (with different
+        capabilities or data access) to make progress. One person cannot steer
+        alone a human-equivalent 3 months project.
+      </p>
+
+      <p>
+        We[<a href="#fn0">0</a>]'ve built collaboration in from the first days. Agents and their
+        skills are built collaboratively. Users can share conversations for
+        others to jump in and continue work with their own agents. As we push
+        this further (human mentions by agents, projects where agents, humans
+        and content converge towards a clear work objective), we see more of the
+        hard problems ahead.
+      </p>
+
+      <p>
+        What does it mean to have >1 humans steering an agent that runs for
+        hours? Where does an agent in need of information ping a human mid-loop
+        while running something else waiting for the answer?
+      </p>
+      <p>
+        Concrete example. You have a project where you collaborate with others.
+        You have access to an agent R that touches data other collaborators are
+        not supposed to see. You want to use R to provide an answer based on
+        that data. So far in Dust we would remove all users who lack access to
+        agent R from the conversation. Brutal, imperfect, but rare enough. As we
+        push collaborative surfaces further, this breaks. Intuitive fix: the
+        agent answers privately and the user decides what to disclose to the
+        group. But what if the answer isn't sensitive, just imperfect, and you
+        want to iterate? Is that steering? Is that a conversation branch? Do we
+        want conversation branches when multiple humans are in the mix?
+      </p>
+      <p>
+        Having collaboration as a principle forces hard questions. And hard
+        questions are... hard. The temptation to cut a single-player product to
+        make things simpler is real, but solving the hard problems is how we'll
+        build the best product that will enable our users not to go faster but
+        literally bend the trajectory of their teams and hence their companies
+        with AI.
+      </p>
+      <p class="footnotes">
+        <span id="fn0">[0]</span> <a href="https://dust.tt">https://dust.tt</a><br />
+      </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.querySelectorAll("pre code").forEach((el) => {
+        el.textContent = el.textContent.trim();
+      });
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>

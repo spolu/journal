@@ -2,7 +2,19 @@
 <html lang="en-US">
   <head>
     <title>Links</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="../style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2VMKML2XVY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2VMKML2XVY');
+    </script>
   </head>
   <body>
     <a href="../index.html" class="home">&larr; HOME</a>
@@ -22,5 +34,13 @@
         </li>
       </ul>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.querySelectorAll("pre code").forEach((el) => {
+        el.textContent = el.textContent.trim();
+      });
+      hljs.highlightAll();
+    </script>
   </body>
 </html>

@@ -196,6 +196,12 @@ code:not(pre code) {
   font-size: 0.95em;
 }
 
+.date {
+  color: #999;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
 .home {
   text-decoration: none;
   font-weight: bold;
