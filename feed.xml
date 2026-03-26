@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Stanislas Polu</title>
+    <title>@spolu notes</title>
     <link>https://spolu.sh</link>
-    <description>Notes, ideas and scratchpads by Stanislas Polu</description>
+    <description>Notes and posts by @spolu</description>
     <language>en-us</language>
     <lastBuildDate>Wed, 18 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://spolu.sh/feed.xml" rel="self" type="application/rss+xml"/>
