@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Multiplayer AI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2VMKML2XVY"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-2VMKML2XVY");
+    </script>
+  </head>
+  <body>
+    <a href="../index.html" class="home">&larr; HOME</a>
+    <section id="wrapper">
+      <p class="date">March 26, 2026</p>
+      <h1>Multiplayer AI</h1>
+
+      <p>
+        Funny how we standardized on the word "harness" to describe the
+        environment in which agents are executed and the human/agent interface
+        associated with it. The word harness suggests a handle for humans to box
+        and control agents to exploit their power. But when intelligence sits on
+        both ends of the interface, it is no longer a one-way handle but rather
+        a bi-directional medium. Maybe the cold truth is that the harness is
+        probably as much for us as it is for agents[<a href="#fn0">0</a>]!
+      </p>
+
+      <p>
+        Purposefully or not, a <em>harness</em> is also inherently a
+        single-player concept. 3 years ago I wrote[<a href="#fn1">1</a>]:
+      </p>
+
+      <blockquote>
+        <p>
+          ChatGPT is the Pong of LLMs. Next we'll inevitably go through a
+          trough of disillusionment… … but imagine, one day we'll get the DOOM,
+          Civ, Red Alert, and Counter Strike of LLMs🤩 Let alone multiplayer
+          modes🔥
+        </p>
+        <p>
+          Continuing with that analogy… With Dust, we're building something like
+          the level editor for Pong… whatever that means🤔 Now that gets me
+          thinking about multiplayer mode 😬
+        </p>
+      </blockquote>
+
+      <p>
+        I would concede that with the emergence of agents and improvement of
+        their harnesses, including sandboxes and access to a plethora of tools,
+        we've moved from Pong to DOOM; or even, let's be bold, Civ and Red
+        Alert in the still rare cases where many agents are used in parallel.
+        But we're still very far away from working multiplayer modes.
+      </p>
+
+      <p>
+        Most, if not all, human-agent interactions today are still
+        single-player. For the past three years, despite effectively pushing
+        collaborative features in Dust (most notably what we would describe
+        today as the ability for multiple humans to interact with agents through
+        a shared harness), our users (and us) still have a tendency to avoid
+        working with agents collaboratively most of the time. We revert to the
+        single-player mode, nudged by an invisible force.
+      </p>
+
+      <p>Why is that? Two hypotheses:</p>
+
+      <p>
+        (i) Interacting with an agent feels very personal due to its
+        <em>messiness</em>. Because agents and their harnesses are still very
+        much imperfect, getting to a specific outcome often requires a lot of
+        gnarly impure pedestrian steering. Put differently, you don't want to
+        see how the sausage is made, and we all have our own way of making it.
+      </p>
+
+      <p>
+        (ii) The typical time-horizon of the tasks we use agents for is still
+        pretty short. Collaboration does not happen in the task, it happens
+        outside of the task (On GitHub for code, on Salesforce/Hubspot for
+        sales, on Slack, Notion, Google Drive and many other platforms for
+        everything else).
+      </p>
+
+      <p>
+        Yet, the time-horizon of the tasks that agents can tackle is rapidly
+        increasing[<a href="#fn2">2</a>]. It seems unlikely that steering agents
+        working on weeks or months-long human equivalent tasks won't require
+        collaboration from multiple humans within an organization. The force
+        vector of (ii) is about to switch direction pushing us towards
+        multiplayer collaboration instead.
+      </p>
+
+      <p>
+        When that happens (i) and (ii) become at odds and will require new
+        human-agent interfaces to resolve the tension. Collaboration will happen
+        within the task, aka the agentic loop, instead of outside of it. We'll
+        need aside interactions operating on shared context and state. We'll
+        need to provide agents with ways to interface not with one human but the
+        whole organization so that they can ask questions, assign blocking
+        sub-tasks, and more broadly orchestrate work, parallelizing when
+        possible, blocking when needed. We'll need ways for teams of humans to
+        collaborate on introspecting work and steering agents as they make
+        progress. The harness will go from a human/agent harness to a
+        company/agents harness, an operating system for agents/agents and
+        agents/humans collaboration.
+      </p>
+
+      <p>
+        Shaping the right interfaces for this collaboration to happen is the
+        next frontier, and this frontier feels excitingly unscratched as of
+        today.
+      </p>
+
+      <p class="footnotes">
+        <span id="fn0">[0]</span> The word <em>harness</em> becomes all of the
+        sudden a bit more uneasing when seen through that lens.<br />
+        <span id="fn1">[1]</span>
+        <a href="https://x.com/spolu/status/1625773663290068995"
+          >https://x.com/spolu/status/1625773663290068995</a
+        ><br />
+        <span id="fn2">[2]</span>
+        <a href="https://metr.org/">https://metr.org/</a><br />
+      </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.querySelectorAll("pre code").forEach((el) => {
+        el.textContent = el.textContent.trim();
+      });
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>

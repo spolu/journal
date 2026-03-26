@@ -5,8 +5,15 @@
     <link>https://spolu.sh</link>
     <description>Notes and posts by @spolu</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://spolu.sh/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Multiplayer AI</title>
+      <link>https://spolu.sh/notes/20260326_multiplayer_ai.html</link>
+      <guid>https://spolu.sh/notes/20260326_multiplayer_ai.html</guid>
+      <pubDate>Thu, 26 Mar 2026 00:00:00 +0000</pubDate>
+      <description>We standardized on the word "harness" to describe agent environments, but a harness is inherently single-player. Three years ago I predicted we'd get the DOOM, Civ, and Counter Strike of LLMs. We're getting closer — but multiplayer modes are still far away.</description>
+    </item>
     <item>
       <title>Writing, Coding, and Style</title>
       <link>https://spolu.sh/notes/20260318_writing_coding_and_style.html</link>
