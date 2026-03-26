@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Writing, Coding, and Style</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2VMKML2XVY"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-2VMKML2XVY");
+    </script>
+  </head>
+  <body>
+    <a href="../index.html" class="home">&larr; HOME</a>
+    <section id="wrapper">
+      <p class="date">March 18, 2026</p>
+      <h1>Writing, Coding, and Style</h1>
+
+      <p>
+        Great writing may be the last refuge of human superiority on models.
+        It's quite surprising to me that we still detect fairly well AI slop vs
+        great writing but have all, as software engineers, accepted AI generated
+        code as the new norm.
+      </p>
+
+      <p>
+        We used to pride ourselves in our craft, sometimes even comparing code
+        to an art or poetry. Let's be honest. It didn't take long for us to jump
+        on the bandwagon and flood our codebases with agent generated code while
+        enforcing very minimal (no) style oversight.
+      </p>
+
+      <p>
+        <strong>Hypothesis A:</strong> Coding style was just an illusion all
+        along and we never really cared.
+      </p>
+      <p>
+        <strong>Hypothesis B:</strong> Engineers are lazier than they care for
+        style.
+      </p>
+      <p>
+        <strong>Hypothesis C:</strong> Good code style is correlated to
+        correctness and models post-training/RL on coding tasks allow emergence
+        of strong coding style.
+      </p>
+
+      <p>
+        It's likely a mix of all three. But assuming C has some truth to it,
+        contrary to code, most writing tasks are hard to tie to a verifiable
+        outcome which may prevent models from hill-climbing towards strong
+        writing style, lacking a definite signal to reinforce against.
+      </p>
+
+      <p>
+        (Now I wonder if models' writing style is less sloppy when generating
+        informal maths proofs since this is a unique setup where the modality is
+        "English" but models are heavily RL-ed on tasks that have verifiable
+        outcomes (maths exercises with numerical answers))[<a href="#fn0">0</a
+        >].
+      </p>
+
+      <p>
+        Not only do we (still) (hopefully) outperform models when it comes to
+        writing but it is also becoming an increasingly critical skill to
+        structure one's thoughts as we get more and more removed from the
+        iterative crafting process. We used to expect from engineers great code,
+        we are increasingly expecting from them great write-ups to frame and
+        shape a problem for humans and agents alike. At a more micro level,
+        interacting with agents (hence most of coding in 2026)
+        <strong>is</strong> writing, and arguably, the better our writing is,
+        the more efficient our agentic coding sessions should be.
+      </p>
+
+      <p>
+        I made the point in "No flow is the new flow"[<a href="#fn1">1</a>] that
+        agentic coding deprived software engineers from the state of flow that
+        was so dear to their hearts. Maybe the new flow for us is writing. Great
+        authentic human writing.
+      </p>
+
+      <p class="footnotes">
+        <span id="fn0">[0]</span> The $1b question is what hill-climb leads to
+        em-dashes?<br />
+        <span id="fn1">[1]</span>
+        <a href="https://spolu.sh/notes/20260311_no_flow_is_the_new_flow.html"
+          >https://spolu.sh/notes/20260311_no_flow_is_the_new_flow.html</a
+        ><br />
+      </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.querySelectorAll("pre code").forEach((el) => {
+        el.textContent = el.textContent.trim();
+      });
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>

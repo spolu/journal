@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>MCP vs CLI vs Code</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2VMKML2XVY"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-2VMKML2XVY");
+    </script>
+  </head>
+  <body>
+    <a href="../index.html" class="home">&larr; HOME</a>
+    <section id="wrapper">
+      <p class="date">March 17, 2026</p>
+      <h1>MCP vs CLI vs Code</h1>
+
+      <p>
+        There's been a lot of discussion about MCP lately (Garry Tan called it
+        trash, Eric Holmes declared it dead, Perplexity started routing
+        workflows away from it). We're in a "long live the CLI" moment. Some of
+        the criticism is deserved but it's also important to recognize some of
+        MCP's advantages to avoid throwing the baby out with the bathwater.
+      </p>
+
+      <p>MCP falls short when it comes to chainability and schema bloat.</p>
+
+      <p>
+        <strong>Chainability.</strong> CLI and code have a clear advantage here.
+        The output of a CLI call can be piped into another tool, filtered,
+        transformed. Code can compose results across multiple service calls
+        without round-tripping through the model. MCP tool calls are atomic.
+        Each result flows through the context window before the next call can
+        happen. For tasks involving sequences of operations on data, this is a
+        real tax.
+      </p>
+
+      <p>
+        <strong>Schema bloat.</strong> The "too much context" criticism is real,
+        and it's not just about poorly designed servers. Even a well-built MCP
+        server can't escape the upfront cost of tool schemas definition. The
+        GitHub MCP server ships 93 tools (one could argue here that it's a
+        design issue). That's ~55k tokens of schema injected before a single
+        task starts. For some servers it goes as high as a 35x. And it stacks:
+        connect GitHub + Jira + a database + Microsoft Graph and you're easily
+        past 150k tokens before the model has done anything useful.
+      </p>
+
+      <p>
+        But MCP is still not doomed as both problems have solutions that don't
+        require abandoning the protocol.
+      </p>
+
+      <p>
+        For chainability, the answer is lazy tool loading: only surface tool
+        names and descriptions and let the model load schemas on demand. On the
+        chainability side, the problem is also tractable. Simply instantiate
+        large MCP outputs as files that can be introspected by the agent without
+        having to flow them entirely through the context.
+      </p>
+
+      <p>But CLI or code also falls short in other dimensions.</p>
+
+      <p>
+        <strong>Auth discovery.</strong> MCP's spec builds on OAuth 2.1, RFC
+        9728 (Protected Resource Metadata), and RFC 7591 (Dynamic Client
+        Registration). An MCP server exposes
+        <code>/.well-known/oauth-protected-resource</code>. The client discovers
+        the authorization server, registers dynamically if needed, and runs a
+        standard PKCE flow. You define an MCP server by a URL and the entire
+        auth handshake gets handled by the protocol.
+      </p>
+
+      <p>
+        There is no equivalent for CLI or code running in a sandbox. If an agent
+        needs to call the Linear API on behalf of a user, there's no standard
+        way to trigger an auth flow, get a token, and resume execution. Each
+        integration requires custom plumbing. Worth noting: mcp-cli has already
+        re-implemented MCP's OAuth 2.1 layer with PKCE, token refresh, and
+        browser-based flows as a standalone CLI module. The primitives exist.
+        What's missing is standardization so every agent runtime doesn't have to
+        rebuild them independently. The interesting part: MCP's OAuth layer is
+        just standard OAuth with a discovery convention. Services that already
+        have MCP OAuth endpoints don't need to implement anything new for CLI or
+        code to reuse them. You could adopt the same <code>/.well-known/</code>
+        convention for any execution context and piggyback on existing MCP
+        provider infrastructure.
+      </p>
+
+      <p>
+        <strong>Action discovery and enterprise controls.</strong> MCP's
+        <code>tools/list</code> lets a platform sitting between the agent and
+        the MCP server know exactly which actions are available. In a B2B
+        context, this is what enables a company-controlled AI OS to set
+        per-user, per-action controls: allow, refuse, or require human
+        confirmation before execution.
+      </p>
+
+      <p>When MCP interactions are intermediated by a platform:</p>
+
+      <ul>
+        <li>
+          Tool listing becomes a security boundary: agents only discover tools
+          they're authorized to use.
+        </li>
+        <li>
+          Per-action authorization becomes possible: "this agent can read Jira
+          issues but not create them" with zero ambiguity.
+        </li>
+        <li>
+          Audit trails are typed: every MCP tool call is a named, structured
+          event. Every code execution is an opaque string.
+        </li>
+      </ul>
+
+      <p>
+        With code executing in a sandbox, you can sandbox the environment but
+        you can't do granular action-level authorization without parsing
+        arbitrary strings. Anything the human can do the agent will without any
+        control. Not a killer but definitely something many admins will feel
+        uncomfortable with as they won't be able to supervise or control agent
+        actions separately from human ones.
+      </p>
+
+      <p>
+        In a single-user, single-purpose context, CLI and code often win on
+        efficiency and composability. For an engineer piping <code>gh</code>
+        commands together in Claude Code, MCP is overhead. But in a multi-user
+        enterprise context where agents act on behalf of different employees
+        with different permissions, interacting with dozens of services that
+        each require auth and each expose actions that need governance, the
+        structural advantages of a protocol with built-in auth discovery and
+        action enumeration is hard to completely ignore.
+      </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.querySelectorAll("pre code").forEach((el) => {
+        el.textContent = el.textContent.trim();
+      });
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>

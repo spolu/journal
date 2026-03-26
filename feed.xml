@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Stanislas Polu</title>
+    <link>https://spolu.sh</link>
+    <description>Notes, ideas and scratchpads by Stanislas Polu</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://spolu.sh/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Writing, Coding, and Style</title>
+      <link>https://spolu.sh/notes/20260318_writing_coding_and_style.html</link>
+      <guid>https://spolu.sh/notes/20260318_writing_coding_and_style.html</guid>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <description>Great writing may be the last refuge of human superiority on models. It's quite surprising to me that we still detect fairly well AI slop vs great writing but have all, as software engineers, accepted AI generated code as the new norm.</description>
+    </item>
+    <item>
+      <title>MCP vs CLI vs Code</title>
+      <link>https://spolu.sh/notes/20260317_mcp_vs_cli_vs_code.html</link>
+      <guid>https://spolu.sh/notes/20260317_mcp_vs_cli_vs_code.html</guid>
+      <pubDate>Mon, 17 Mar 2026 00:00:00 +0000</pubDate>
+      <description>There's been a lot of discussion about MCP lately. We're in a "long live the CLI" moment. Some of the criticism is deserved but it's also important to recognize what MCP gets right.</description>
+    </item>
+    <item>
+      <title>No Flow is the New Flow</title>
+      <link>https://spolu.sh/notes/20260311_no_flow_is_the_new_flow.html</link>
+      <guid>https://spolu.sh/notes/20260311_no_flow_is_the_new_flow.html</guid>
+      <pubDate>Tue, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <description>Coding agents are just better than us at most well-defined, well-packaged coding tasks. It is increasingly rare to find coding tasks where doing it manually will be more efficient than packaging the task clearly for a set of agents to tackle it.</description>
+    </item>
+    <item>
+      <title>AI and Collaboration</title>
+      <link>https://spolu.sh/notes/20260310_ai_and_collaboration.html</link>
+      <guid>https://spolu.sh/notes/20260310_ai_and_collaboration.html</guid>
+      <pubDate>Mon, 10 Mar 2026 00:00:00 +0000</pubDate>
+      <description>Most AI use out there is single agent, single player. Our hypothesis: collaboration is on the critical path of accelerating companies with AI.</description>
+    </item>
+  </channel>
+</rss>
