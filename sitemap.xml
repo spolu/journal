@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://spolu.sh/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://spolu.sh/notes/20260326_multiplayer_ai.html</loc>
+  </url>
+  <url>
+    <loc>https://spolu.sh/notes/20260318_writing_coding_and_style.html</loc>
+  </url>
+  <url>
+    <loc>https://spolu.sh/notes/20260317_mcp_vs_cli_vs_code.html</loc>
+  </url>
+  <url>
+    <loc>https://spolu.sh/notes/20260311_no_flow_is_the_new_flow.html</loc>
+  </url>
+  <url>
+    <loc>https://spolu.sh/notes/20260310_ai_and_collaboration.html</loc>
+  </url>
+  <url>
+    <loc>https://spolu.sh/notes/bitcoin_gmail_keybase.html</loc>
+  </url>
+  <url>
+    <loc>https://spolu.sh/notes/skirmish.html</loc>
+  </url>
+  <url>
+    <loc>https://spolu.sh/notes/links.html</loc>
+  </url>
+  <url>
+    <loc>https://spolu.sh/posts/generative_worms.html</loc>
+  </url>
+</urlset>
