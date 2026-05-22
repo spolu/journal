@@ -5,8 +5,15 @@
     <link>https://spolu.sh</link>
     <description>Notes and posts by @spolu</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://spolu.sh/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Agents Deserve Servers, Not Computers</title>
+      <link>https://spolu.sh/notes/20260522_agents_deserve_servers_not_computers.html</link>
+      <guid>https://spolu.sh/notes/20260522_agents_deserve_servers_not_computers.html</guid>
+      <pubDate>Fri, 22 May 2026 00:00:00 +0000</pubDate>
+      <description>Agents need more than local computers or sandboxes: they need shared servers where humans and agents can collaborate over durable state. That shift points toward hyper-personalized business software, with authorization as the hard part.</description>
+    </item>
     <item>
       <title>Multiplayer AI</title>
       <link>https://spolu.sh/notes/20260326_multiplayer_ai.html</link>

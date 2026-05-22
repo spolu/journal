@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Agents Deserve Servers, Not Computers</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2VMKML2XVY"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-2VMKML2XVY");
+    </script>
+  </head>
+  <body>
+    <a href="../index.html" class="home">&larr; HOME</a>
+    <section id="wrapper">
+      <p class="date">May 22, 2026</p>
+      <h1>Agents Deserve Servers, Not Computers</h1>
+
+      <p>
+        Every agent is getting a computer, whether it's localhost or a sandbox,
+        as part of their harness. Evals like TerminalBench even assume the
+        presence of a computer. It's been a long time coming: a computer and a
+        simple set of process management tools is the universal toolset for
+        agents[<a href="#fn0">0</a>] (in practice authentication is still a
+        pain but an MCP CLI with approval flows going back to the user is
+        ~close enough[<a href="#fn1">1</a>]).
+      </p>
+
+      <p>
+        I will not dive into the details of why localhost is inherently a
+        single-player game and how it won't scale past a couple days of
+        human-work-equivalent tasks for agents since these tasks are inherently
+        cross-functional and require multiplayer steering, which has to happen
+        in the cloud. Localhost is dead.
+      </p>
+
+      <p>
+        But beyond computers or sandboxes, what we want to equip our agents
+        with is not a "computer" but rather a shared machine, aka a server. A
+        server shared with other agents and humans. The server comes with
+        instructions for agents and humans. Agents interact with it through bash
+        (universal, right?) and humans can ask their agent to create a UI for
+        them to interact with the data in the way they want, for their company,
+        for their team, for themselves. Humans and agents operate on a shared
+        system (be it a project task list, a mini-ERP, a custom-made CRM).
+        Humans can conjure the UI/UX they need at any given time or they can
+        also just ask their agent to do the work, no click needed.
+      </p>
+
+      <p>
+        I thiiiink we're about to enter the era[<a href="#fn2">2</a>] of
+        hyper-personalized business software. Funny how history is playing
+        backward for agents from PC to Mainframe, not the other way around. Very
+        funny also how Wall Street might have gotten this whole "SaaS is dead"
+        thing right very, very early :o
+      </p>
+
+      <p>
+        If you ask me (you haven't), I'm a pretty big fan here of the
+        shared-nothing approach (everything lives in the sandbox, code, state,
+        ...). The server comes loaded with a sqlite database or any other
+        straightforward storage system that can be introspected easily and gets
+        snapshotted as part of the sandbox directly. UIs are custom-made for
+        every use case and can be retrieved, shared, polished.
+      </p>
+
+      <p>
+        If you squint, this is Lovable turf, but I don't think they're that well
+        positioned for the wave to come. They're inherently B2C and pushing
+        their product in that direction; there's still a lot of friction. On top
+        of that, this whole server idea is hell on earth in terms of the lethal
+        trifecta[<a href="#fn3">3</a>] especially since users will want to share
+        these custom-made views with people external to their team or even
+        company. The work on authorization is deep and challenging here, which
+        is great!
+      </p>
+
+      <p>
+        I'm super pumped to explore in that direction. This is multiplayer AI at
+        its finest \o/
+      </p>
+
+      <p class="footnotes">
+        <span id="fn0">[0]</span> 6m already!
+        <a href="https://youtu.be/9OjcAYsncpw?si=N8aI2OErivcU9egM&amp;t=374"
+          >https://youtu.be/9OjcAYsncpw?si=N8aI2OErivcU9egM&amp;t=374</a
+        ><br />
+        <span id="fn1">[1]</span>
+        <a href="https://spolu.sh/notes/20260317_mcp_vs_cli_vs_code.html"
+          >MCP vs CLI vs Code</a
+        ><br />
+        <span id="fn2">[2]</span> Note eras in AI land last 6mo max.<br />
+        <span id="fn3">[3]</span>
+        <a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/"
+          >https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/</a
+        ><br />
+      </p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      document.querySelectorAll("pre code").forEach((el) => {
+        el.textContent = el.textContent.trim();
+      });
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>
